@@ -1,0 +1,77 @@
+version: "3.8"
+
+services: 
+    clientes:
+        build: 
+            dockerfile: ./clientes/Dockerfile
+            context: .
+        image: douglasrocha06/clientes
+        container_name: api-clientes
+        ports: 
+        - "5100:5100"
+        networks: 
+        - rede_docker
+        depends_on: 
+        - "base-clientes"
+        env_file: var_clientes.env
+        
+    enderecos:
+        build: 
+            dockerfile: ./enderecos/enderecos.Dockerfile
+            context: .
+        image: douglasrocha06/enderecos
+        container_name: api-enderecos
+        ports: 
+        - "5200:5200"
+        networks: 
+        - rede_docker
+        depends_on: 
+        - "base-clientes"
+        env_file: var_endereco.env
+
+    catalogo:
+        build: 
+            dockerfile: ./catalogo/catalogo.Dockerfile
+            context: .
+        image: douglasrocha06/catalogo
+        container_name: api-catalogo
+        ports: 
+        - "5300:5300"
+        networks: 
+        - rede_docker
+        depends_on: 
+        - "base-clientes"
+        env_file: var_catalogo.env
+
+    inventario:
+        build: 
+            dockerfile: ./inventario/inventario.Dockerfile
+            context: .
+        image: douglasrocha06/inventario
+        container_name: api-inventario
+        ports: 
+        - "5400:5400"
+        networks: 
+        - rede_docker
+        depends_on: 
+        - "base-clientes"
+        env_file: var_inventario.env
+
+    base-clientes:
+        build:
+            dockerfile: ./base_de_dados/mysql.dockerfile
+            context: .
+        image: douglasrocha06/banco_de_dados
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        container_name: banco_de_dados
+        ports:
+        - "3306:3306"
+        networks: 
+        - rede_docker
+        environment: 
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_DATABASE: api_clientes
+networks: 
+    rede_docker:
+        driver: bridge

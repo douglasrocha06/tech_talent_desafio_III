@@ -1,0 +1,8 @@
+*.terraform
+*.terraform.lock.hcl
+*terraform.tfstate.lock.info
+*.tfstate
+*.tfstate.backup
+*gitlab-ci.yml
+*tech_variables.tf
+*key_pars.tf

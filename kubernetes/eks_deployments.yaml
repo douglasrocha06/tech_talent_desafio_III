@@ -1,0 +1,104 @@
+#deployments clientes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-clientes-deployment
+  labels:
+    app: api-clientes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-clientes
+  template:
+    metadata:
+      labels:
+        app: api-clientes
+    spec:
+      containers:
+      - name: api-clientes-container
+        image: douglasrocha06/clientes
+        ports:
+          - containerPort: 5100
+        envFrom:
+          - configMapRef:
+              name: configmap-clientes
+---
+
+#deployments enderecos
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-enderecos-deployment
+  labels:
+    app: api-enderecos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-enderecos
+  template:
+    metadata:
+      labels:
+        app: api-enderecos
+    spec:
+      containers:
+      - name: api-enderecos-container
+        image: douglasrocha06/enderecos
+        ports:
+          - containerPort: 5200
+        envFrom:
+          - configMapRef:
+              name: configmap-enderecos
+---
+#deployments catalogo
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-catalogo-deployment
+  labels:
+    app: api-catalogo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-catalogo
+  template:
+    metadata:
+      labels:
+        app: api-catalogo
+    spec:
+      containers:
+      - name: api-clientes-catalogo
+        image: douglasrocha06/catalogo
+        ports:
+          - containerPort: 5300
+        envFrom:
+          - configMapRef:
+              name: configmap-catalogo
+---
+#deployments inventario
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-inventario-deployment
+  labels:
+    app: api-inventario
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-inventario
+  template:
+    metadata:
+      labels:
+        app: api-inventario
+    spec:
+      containers:
+      - name: api-inventario-container
+        image: douglasrocha06/inventario
+        ports:
+          - containerPort: 5400
+        envFrom:
+          - configMapRef:
+              name: configmap-inventario

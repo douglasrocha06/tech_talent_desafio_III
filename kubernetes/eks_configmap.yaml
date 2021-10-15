@@ -1,0 +1,49 @@
+#Configmap clientes
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-clientes
+data:
+  MYSQL_DATABASE_USER: "admin"
+  MYSQL_DATABASE_PASSWORD: "12345678"
+  MYSQL_DATABASE_DB: "api_clientes"
+  MYSQL_DATABASE_HOST: "dlbanco.cxycaymkd24m.us-east-1.rds.amazonaws.com"
+---
+
+#Configmap enderecos
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-enderecos
+data:
+  MYSQL_DATABASE_USER: "admin"
+  MYSQL_DATABASE_PASSWORD: "12345678"
+  MYSQL_DATABASE_DB: "api_clientes"
+  MYSQL_DATABASE_HOST: "dlbanco.cxycaymkd24m.us-east-1.rds.amazonaws.com"
+---
+
+#Configmap catalogo
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-catalogo
+data:
+  MYSQL_DATABASE_USER: "admin"
+  MYSQL_DATABASE_PASSWORD: "12345678"
+  MYSQL_DATABASE_DB: "api_produtos"
+  MYSQL_DATABASE_HOST: "dlbanco.cxycaymkd24m.us-east-1.rds.amazonaws.com"
+---
+
+#Configmap inventario
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-inventario
+data:
+  MYSQL_DATABASE_USER: "admin"
+  MYSQL_DATABASE_PASSWORD: "12345678"
+  MYSQL_DATABASE_DB: "api_inventario"
+  MYSQL_DATABASE_HOST: "dlbanco.cxycaymkd24m.us-east-1.rds.amazonaws.com"
+  
+  ENDPOINT_CLIENTES: "www.db.tech-talent.cf"
+  ENDPOINT_CATALOGO: "www.db.tech-talent.cf"

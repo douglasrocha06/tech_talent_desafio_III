@@ -1,0 +1,39 @@
+#Regras ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /clientes
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-api-clientes
+            port:
+              number: 5100
+      - path: /enderecos
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-api-enderecos
+            port:
+              number: 5200
+      - path: /catalogo
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-api-catalogo
+            port:
+              number: 5300
+      - path: /compras
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-api-inventario
+            port:
+              number: 5400
